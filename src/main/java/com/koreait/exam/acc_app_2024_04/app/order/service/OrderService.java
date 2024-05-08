@@ -58,7 +58,7 @@ public class OrderService {
         for (OrderItem orderItem : orderItems) {
             order.addOrderItem(orderItem);
         }
-        
+
         //주문 품목으로부터 이름 생성
         order.makeName();
 
@@ -118,5 +118,9 @@ public class OrderService {
         order.setPaymentDone();
         orderRepository.save(order);
 
+    }
+
+    public boolean actorCanPayment(Member actor, Order order) {
+        return actorCanSee(actor, order);
     }
 }
