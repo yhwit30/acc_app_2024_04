@@ -9,6 +9,7 @@
     <div class="container mx-auto">
         <div>
             <h1>정산데이터 목록</h1>
+
             <div class="overflow-x-auto">
                 <table class="table table-compact w-full">
                     <thead>
@@ -34,7 +35,7 @@
                     <tr th:each="item : ${items}">
                         <td>
                             <input onchange="OrderItemCheckbox__changed();" th:if="${item.rebateAvailable}"
-                                   type="checkbox" class="orderItemCheckbox checkbox">
+                                   type="checkbox" class="orderItemCheckbox checkbox" th:value="${item.orderItem.id}">
                         </td>
                         <td th:text="${item.orderItem.id}"></td>
                         <td th:text="${item.payDate}"></td>
@@ -48,16 +49,17 @@
                         <td th:text="${item.rebateCashLog?.id}"></td>
                         <td>
                             <a th:if="${item.rebateAvailable}" href="javascript:;" onclick="$(this).next().submit();"
-                               class="btn btn-xs">건별정산</a>
+                               class="btn btn-primary btn-xs">건별정산</a>
                             <form method="POST" th:action="@{|/adm/rebate/rebateOne/${item.orderItem.id}|}"
                                   hidden></form>
                         </td>
                     </tr>
                     </tbody>
                 </table>
+
                 <a href="javascript:;" onclick="RebateForm__submit();" class="btn btn-primary btn-sm">선택정산</a>
                 <form method="POST" name="rebateForm" th:action="@{|/adm/rebate/rebate|}" hidden>
-
+                    <input type="hidden" name="ids">
                 </form>
 
                 <script>
@@ -65,6 +67,7 @@
                     const $orderItemCheckboxAll = $('.orderItemCheckboxAll');
                     // 아이템 체크박스
                     const $orderItemCheckbox = $('.orderItemCheckbox');
+
                     $orderItemCheckboxAll.change(function () {
                         const allChecked = $(this).prop('checked');
                         $orderItemCheckbox.prop('checked', allChecked); // 아이템 체크박스들에게 체크상태 동기화
@@ -90,12 +93,13 @@
                             return;
                         }
 
+                        const ids = $checked.map((index, el) => $(el).val()).get();
+                        form.ids.value = ids;
                         form.submit();
                         RebateForm__submitDone = true;
                     }
                 </script>
             </div>
-
         </div>
     </div>
 </main>
