@@ -25,8 +25,6 @@ intelliJ <br>
 
 ![image](https://github.com/yhwit30/acc_app_2024_04/assets/153142837/8985c3ed-c388-4752-b7ef-a03a7c8e4386)
 
-![image](https://github.com/yhwit30/acc_app_2024_04/assets/153142837/86703618-e0ac-4eef-9cd5-866c7479b4cc)
-
 ![image](https://github.com/yhwit30/acc_app_2024_04/assets/153142837/b336b562-8069-4e58-be05-c1e960151cf6)
 
 
